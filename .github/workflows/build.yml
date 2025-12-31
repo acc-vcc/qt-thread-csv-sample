@@ -1,0 +1,40 @@
+name: Build (Windows)
+
+on:
+  push:
+    branches: [feature/add]
+
+jobs:
+  build-windows:
+    runs-on: windows-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Install Qt (with MinGW)
+        uses: jurplel/install-qt-action@v3
+        with:
+          version: '5.15.2'
+          host: 'windows'
+          target: 'desktop'
+          arch: 'win64_mingw81'
+          tools: 'tools_mingw81'
+
+      # Qt の MinGW を PATH の先頭に追加（固定パスではなく環境変数を使う）
+      - name: Add Qt MinGW to PATH
+        run: |
+          echo "PATH=${{ env.IQTA_TOOLS }}\mingw810_64\bin;$env:PATH" >> $env:GITHUB_ENV
+
+      - name: Configure (CMake)
+        run: |
+          cmake -G "MinGW Makefiles" -S app5 -B build -DCMAKE_BUILD_TYPE=Release
+
+      - name: Build
+        run: cmake --build build -- -j4
+
+      - name: Upload artifact (Windows exe)
+        uses: actions/upload-artifact@v4
+        with:
+          name: qt-thread-csv-sample-windows
+          path: build/*.exe
