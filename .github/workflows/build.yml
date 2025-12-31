@@ -2,7 +2,7 @@ name: Build (Windows)
 
 on:
   push:
-    branches: [feature/add]
+    branches: [main]
 
 jobs:
   build-windows:
