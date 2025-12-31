@@ -28,7 +28,7 @@ jobs:
 
       - name: Configure (CMake)
         run: |
-          cmake -G "MinGW Makefiles" -S app5 -B build -DCMAKE_BUILD_TYPE=Release
+          cmake -G "MinGW Makefiles" -B build -DCMAKE_BUILD_TYPE=Release
 
       - name: Build
         run: cmake --build build -- -j4
