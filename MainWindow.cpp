@@ -17,6 +17,7 @@
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
 {
+    setWindowTitle("CSV一括解析ツール");
     setupUi();
     connectSignals();
     updateUiState();
