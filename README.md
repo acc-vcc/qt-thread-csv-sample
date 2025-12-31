@@ -72,7 +72,7 @@ qt-thread-csv-sample/
 ├─ .gitignore               # Git 管理対象外ファイル設定
 ├─ .github
 │  └─ workflows
-│     └─ build.yml         # GitHub Actions（Windows 自動ビルド）
+│     └─ build.yml          # GitHub Actions（Windows 自動ビルド）
 ├─ CMakeLists.txt           # CMake 設定
 ├─ main.cpp                 # エントリポイント
 ├─ MainWindow.cpp  / .h     # GUI（Qt Widgets）
